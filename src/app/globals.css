@@ -1,0 +1,423 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+/*
+ * Theme tokens for the light, dark and telegram themes.
+ *
+ * Token names: paper, sheet, line, ink, track, bar, inset, scope, glow, panel, focus,
+ * ok/caution/danger (+ -tint). "muted" (secondary text) is shadcn's --muted-foreground,
+ * because shadcn already uses --muted for a background.
+ */
+
+@custom-variant dark (&:where([data-theme='dark']:not([data-telegram]), [data-theme='dark']:not([data-telegram]) *));
+
+@theme inline {
+  --font-sans: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-atkinson-mono), ui-monospace, monospace;
+  --font-heading: var(--font-sans);
+
+  --color-paper: var(--paper);
+  --color-sheet: var(--sheet);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-track: var(--track);
+  --color-bar: var(--bar);
+  --color-inset: var(--inset);
+  --color-scope: var(--scope);
+  --color-scope-ring: var(--scope-ring);
+  --color-glow: var(--glow);
+  --color-panel: var(--panel);
+  --color-panel-ink: var(--panel-ink);
+  --color-panel-muted: var(--panel-muted);
+  --color-focus: var(--focus);
+  --color-ok: var(--ok);
+  --color-caution: var(--caution);
+  /* Small caution text on a caution tint: darker in light so it passes WCAG AA (4.5:1). */
+  --color-caution-ink: var(--caution-ink);
+  --color-danger: var(--danger);
+  --color-ok-tint: var(--ok-tint);
+  --color-caution-tint: var(--caution-tint);
+  --color-danger-tint: var(--danger-tint);
+  --color-burn-a: var(--burn-a);
+  --color-burn-b: var(--burn-b);
+  --color-link: var(--link);
+  --color-sample-bg: var(--sample-bg);
+  --color-sample-border: var(--sample-border);
+  --color-outline-ring: var(--outline-ring);
+  --color-wallet-row: var(--wallet-row);
+
+  /* shadcn semantic tokens, mapped onto the tokens below */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
+  --radius-2xl: 18px;
+  --radius-sheet: 28px;
+
+  /* Motion (radar timings) */
+  --animate-sweep: sweep 1.6s linear infinite;
+  --animate-blip-pop: blip-pop 380ms cubic-bezier(0.2, 0.9, 0.3, 1.4) both;
+  --animate-blip-ping: blip-ping 1.1s ease-out both;
+  --animate-settle: settle 400ms ease both;
+  --animate-rise: rise 500ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-shake: shake 320ms ease;
+  /* Same motion under a second name: switching names replays the shake without remounting. */
+  --animate-shake-alt: shake-alt 320ms ease;
+  --animate-pulse-soft: pulse-soft 1.1s ease-in-out infinite;
+
+  @keyframes sweep {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes blip-pop {
+    from {
+      transform: scale(0.2);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  @keyframes blip-ping {
+    from {
+      transform: scale(1);
+      opacity: 0.9;
+    }
+    to {
+      transform: scale(4.5);
+      opacity: 0;
+    }
+  }
+  @keyframes settle {
+    from {
+      transform: translateY(6px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @keyframes rise {
+    from {
+      transform: translateY(16px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    20%,
+    60% {
+      transform: translateX(-6px);
+    }
+    40%,
+    80% {
+      transform: translateX(6px);
+    }
+  }
+  @keyframes shake-alt {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    20%,
+    60% {
+      transform: translateX(-6px);
+    }
+    40%,
+    80% {
+      transform: translateX(6px);
+    }
+  }
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.45;
+    }
+  }
+}
+
+/* Light (default) */
+:root,
+[data-theme='light'] {
+  --paper: #f5f4f7;
+  --sheet: #ffffff;
+  --line: #e2dfe8;
+  --ink: #1e1a2b;
+  --muted-ink: #5d5870;
+  --track: #eceaf0;
+  --bar: #1e1a2b;
+  --inset: #f5f4f7;
+  --scope: #2a2140;
+  --scope-ring: rgb(201 182 255 / 0.25);
+  --glow: #c9b6ff;
+  --panel: #2a2140;
+  --panel-ink: #f5f4f7;
+  --panel-muted: rgb(245 244 247 / 0.72);
+  --panel-disc: #33284d;
+  --panel-ring: rgb(201 182 255 / 0.3);
+  --focus: #7a5ce0;
+  --ok: #1d7a4c;
+  --caution: #a15e00;
+  --caution-ink: #7a4700;
+  --danger: #bf3527;
+  --ok-tint: color-mix(in srgb, var(--ok) 10%, var(--sheet));
+  --caution-tint: #fcefd9;
+  --danger-tint: #fbe6e3;
+  --burn-a: var(--bar);
+  --burn-b: color-mix(in srgb, var(--bar) 45%, var(--track));
+  --link: var(--ink);
+  --button: var(--ink);
+  --button-text: var(--paper);
+  --sample-bg: var(--caution-tint);
+  --sample-border: transparent;
+  --blip-shadow: drop-shadow(0 0 6px var(--glow));
+  --wallet-row: var(--inset);
+  --outline-ring: rgb(30 26 43 / 0.16);
+}
+
+/* Dark: calmer than light (faint tints, no glow, muted bars) */
+[data-theme='dark'] {
+  --paper: #110e18;
+  --sheet: #1a1624;
+  --line: #2a2438;
+  --ink: #e4e0ec;
+  --muted-ink: #9e97b0;
+  --track: #262033;
+  --bar: #8c82a8;
+  --inset: rgb(255 255 255 / 0.03);
+  --scope: #271e40;
+  --scope-ring: rgb(201 182 255 / 0.14);
+  --glow: #c9b6ff;
+  --panel: #1e1830;
+  --panel-ink: #e4e0ec;
+  --panel-muted: #9e97b0;
+  --panel-disc: #271e40;
+  --panel-ring: rgb(201 182 255 / 0.14);
+  --focus: #c9b6ff;
+  --ok: #5ccb8e;
+  --caution: #f0b24e;
+  --caution-ink: #f0b24e;
+  --danger: #ff8473;
+  --ok-tint: color-mix(in srgb, var(--ok) 8%, transparent);
+  --caution-tint: color-mix(in srgb, var(--caution) 8%, transparent);
+  --danger-tint: color-mix(in srgb, var(--danger) 8%, transparent);
+  --burn-a: var(--bar);
+  --burn-b: color-mix(in srgb, var(--bar) 45%, var(--track));
+  --link: var(--muted-ink);
+  --button: var(--ink);
+  --button-text: var(--paper);
+  --sample-bg: transparent;
+  --sample-border: var(--caution);
+  --blip-shadow: none;
+  --outline-ring: rgb(228 224 236 / 0.16);
+  --wallet-row: transparent;
+}
+
+/*
+ * Telegram: Telegram's own colours from --tg-theme-* (set at runtime by telegram-web-app.js).
+ * Fallbacks are Telegram's default day colours. Night uses the calmer dark treatment via data-color-scheme.
+ * [data-telegram] is set before the first paint inside the Mini App (TELEGRAM_EARLY_SCRIPT), so these
+ * colours win over a saved browser theme from the first frame; it comes after the light/dark blocks
+ * with the same specificity.
+ */
+[data-theme='telegram'],
+[data-telegram] {
+  --paper: var(--tg-theme-secondary-bg-color, #efeff4);
+  --sheet: var(--tg-theme-bg-color, #ffffff);
+  --ink: var(--tg-theme-text-color, #0f0f0f);
+  --muted-ink: var(--tg-theme-hint-color, #707579);
+  --line: var(
+    --tg-theme-section-separator-color,
+    color-mix(in srgb, var(--muted-ink) 25%, var(--sheet))
+  );
+  --track: color-mix(in srgb, var(--ink) 8%, var(--sheet));
+  --bar: var(--ink);
+  --inset: var(--paper);
+  --scope: var(--tg-theme-link-color, #2481cc);
+  --scope-ring: rgb(255 255 255 / 0.25);
+  --glow: #ffffff;
+  --panel: var(--scope);
+  --panel-ink: #ffffff;
+  --panel-muted: rgb(255 255 255 / 0.75);
+  --panel-disc: color-mix(in srgb, #ffffff 12%, var(--panel));
+  --panel-ring: rgb(255 255 255 / 0.3);
+  --focus: var(--tg-theme-link-color, #2481cc);
+  --ok: #1d7a4c;
+  --caution: #a15e00;
+  --caution-ink: #7a4700;
+  --danger: #bf3527;
+  --ok-tint: color-mix(in srgb, var(--ok) 10%, var(--sheet));
+  --caution-tint: #fcefd9;
+  --danger-tint: #fbe6e3;
+  --burn-a: var(--bar);
+  --burn-b: color-mix(in srgb, var(--bar) 45%, var(--track));
+  --link: var(--tg-theme-link-color, #2481cc);
+  --button: var(--tg-theme-button-color, #2481cc);
+  --button-text: var(--tg-theme-button-text-color, #ffffff);
+  --sample-bg: var(--caution-tint);
+  --sample-border: transparent;
+  --blip-shadow: none;
+  --outline-ring: color-mix(in srgb, var(--ink) 16%, transparent);
+  --wallet-row: var(--inset);
+}
+
+[data-theme='telegram'][data-color-scheme='dark'],
+[data-telegram][data-color-scheme='dark'] {
+  --scope-ring: rgb(255 255 255 / 0.14);
+  --bar: color-mix(in srgb, var(--ink) 55%, var(--sheet));
+  --ok: #5ccb8e;
+  --caution: #f0b24e;
+  --caution-ink: #f0b24e;
+  --danger: #ff8473;
+  --ok-tint: color-mix(in srgb, var(--ok) 8%, transparent);
+  --caution-tint: color-mix(in srgb, var(--caution) 8%, transparent);
+  --danger-tint: color-mix(in srgb, var(--danger) 8%, transparent);
+  --sample-bg: transparent;
+  --sample-border: var(--caution);
+  --wallet-row: transparent;
+}
+
+/* shadcn semantic variables → theme tokens (all themes) */
+:root,
+[data-theme] {
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: var(--sheet);
+  --card-foreground: var(--ink);
+  --popover: var(--sheet);
+  --popover-foreground: var(--ink);
+  --primary: var(--button);
+  --primary-foreground: var(--button-text);
+  --secondary: var(--track);
+  --secondary-foreground: var(--ink);
+  --muted: var(--track);
+  --muted-foreground: var(--muted-ink);
+  --accent: var(--inset);
+  --accent-foreground: var(--ink);
+  --destructive: var(--danger);
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--focus);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring;
+  }
+  html {
+    @apply bg-background font-sans text-foreground;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  /* Visible 3px focus outline everywhere */
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 2px;
+  }
+}
+
+/* Reduced motion: no rotation, pop, ping or travel. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/*
+ * Telegram full-screen Mini Apps draw under the status bar and Telegram's own controls. The SDK
+ * sets these insets on <html> (Bot API 8.0+); they are 0 or missing otherwise.
+ */
+@utility telegram-safe-area {
+  [data-theme='telegram'] &,
+  [data-telegram] & {
+    padding-top: calc(
+      var(--tg-safe-area-inset-top, 0px) + var(--tg-content-safe-area-inset-top, 0px)
+    );
+    padding-right: calc(
+      var(--tg-safe-area-inset-right, 0px) + var(--tg-content-safe-area-inset-right, 0px)
+    );
+    padding-bottom: calc(
+      var(--tg-safe-area-inset-bottom, 0px) + var(--tg-content-safe-area-inset-bottom, 0px)
+    );
+    padding-left: calc(
+      var(--tg-safe-area-inset-left, 0px) + var(--tg-content-safe-area-inset-left, 0px)
+    );
+  }
+}
+
+/* Burn supply bar: the holder-bar ink, softly hatched, with a fire-coloured flame at its end. Decorative only. */
+@utility burn-indicator {
+  position: relative;
+  background-color: var(--burn-a);
+  background-image: repeating-linear-gradient(135deg, var(--burn-a) 0 4px, var(--burn-b) 4px 8px);
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 12px;
+    height: 100%;
+    background-color: var(--caution);
+    mask: var(--flame-mask) center / contain no-repeat;
+  }
+}
+
+/* At 0%: empty bar with the flame at the start. */
+@utility burn-empty {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 2px;
+    z-index: 1;
+    width: 12px;
+    height: 100%;
+    background-color: var(--muted-ink);
+    mask: var(--flame-mask) center / contain no-repeat;
+  }
+}
+
+:root {
+  --flame-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2c.6 3.2 2.6 5.3 4.4 7.3C18 11 19 12.8 19 15a7 7 0 1 1-14 0c0-1.6.6-3 1.6-4.2.3 1.6 1.2 2.7 2.4 3.2-.5-3.9.8-8 3-12z'/%3E%3C/svg%3E");
+}
