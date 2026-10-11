@@ -1,0 +1,18 @@
+{
+  "description": "disguised_link (clean)",
+  "messages": [
+    {
+      "channel": "Fixture Tier3 Chat",
+      "id": 9000,
+      "date": "2026-10-09T20:00:00Z",
+      "text": "[some site](https://binance.com.evil.example/login) $DEMO",
+      "text_entities": [
+        {
+          "type": "text_link",
+          "text": "Official Binance site",
+          "href": "https://binance.com.evil.example/login"
+        }
+      ]
+    }
+  ]
+}

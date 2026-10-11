@@ -1,0 +1,17 @@
+{
+  "description": "Paid trending: shown separately with timestamps, never scored",
+  "messages": [
+    {
+      "channel": "Fixture Paid Trending Bot",
+      "id": 5001,
+      "date": "2026-10-09T10:00:00Z",
+      "text": "Sponsored trending slot: $USDC is trending #3"
+    },
+    {
+      "channel": "Fixture Paid Trending Bot",
+      "id": 5002,
+      "date": "2026-10-10T02:30:00Z",
+      "text": "Sponsored trending slot: $USDC 0x3600000000000000000000000000000000000000 trending #1"
+    }
+  ]
+}

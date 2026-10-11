@@ -1,0 +1,29 @@
+{
+  "description": "Promotional: profit-claim spam, conflicting address, hashtag pair",
+  "messages": [
+    {
+      "channel": "Fixture Promo Signals",
+      "id": 4001,
+      "date": "2026-10-09T11:00:00Z",
+      "text": "FREE SIGNAL BOOM! #USDC/USDT TP2 HIT +485% PROFIT join https://t.me/example_vip",
+      "text_entities": [
+        {
+          "type": "url",
+          "text": "https://t.me/example_vip"
+        }
+      ]
+    },
+    {
+      "channel": "Fixture Promo Signals",
+      "id": 4002,
+      "date": "2026-10-09T12:00:00Z",
+      "text": "$USDC runner! CA: 0xabcdefabcdefabcdefabcdefabcdefabcdefabcd"
+    },
+    {
+      "channel": "Fixture Promo Signals",
+      "id": 4003,
+      "date": "2026-10-10T08:00:00Z",
+      "text": "Confirmed play $USDC 0x3600000000000000000000000000000000000000 +300% PROFIT"
+    }
+  ]
+}

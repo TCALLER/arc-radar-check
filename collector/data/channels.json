@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "note": "EXAMPLE registry with made-up channel names (the real registry is kept private). Same structure: name, tier, one-line reason, public handle. All tiers are represented.",
+  "channels": [
+    {
+      "name": "Example Research Desk",
+      "tier": "high_signal",
+      "reason": "Setups always carry invalidation levels and sizing",
+      "handle": "example_research_desk"
+    },
+    {
+      "name": "Example Onchain Flows",
+      "tier": "high_signal",
+      "reason": "Mechanical on-chain data, no commentary",
+      "handle": "example_onchain_flows"
+    },
+    {
+      "name": "Example News Wire",
+      "tier": "neutral",
+      "reason": "Headline aggregator with little original analysis",
+      "handle": "example_news_wire"
+    },
+    {
+      "name": "Example Listings Bot",
+      "tier": "neutral",
+      "reason": "Automated price snapshots and listing alerts",
+      "handle": "example_listings_bot"
+    },
+    {
+      "name": "Example Trader Chat",
+      "tier": "volume",
+      "reason": "Busy community chat, mostly banter",
+      "handle": "example_trader_chat"
+    },
+    {
+      "name": "Example Analyst Feed",
+      "tier": "volume",
+      "reason": "Personal commentary, posts rarely",
+      "handle": "example_analyst_feed"
+    },
+    {
+      "name": "Example VIP Signals",
+      "tier": "promotional",
+      "reason": "Sells signal access, posts profit claims",
+      "handle": "example_vip_signals"
+    },
+    {
+      "name": "Example Gem Caller",
+      "tier": "promotional",
+      "reason": "Pushes one coin at a time with a contract address",
+      "handle": "example_gem_caller"
+    },
+    {
+      "name": "Example Trend Alpha",
+      "tier": "paid_trending",
+      "reason": "Sells trending slots: mentions are bought visibility",
+      "handle": "example_trend_alpha"
+    },
+    {
+      "name": "Example Trend Beta",
+      "tier": "paid_trending",
+      "reason": "Sells trending slots: mentions are bought visibility",
+      "handle": "example_trend_beta"
+    },
+    {
+      "name": "Example Own Feed",
+      "tier": "excluded",
+      "reason": "Our own reports; counting them would feed results back in",
+      "handle": "example_own_feed"
+    }
+  ]
+}

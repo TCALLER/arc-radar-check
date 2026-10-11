@@ -1,0 +1,11 @@
+{
+  "description": "fake_paid_trending_claim (clean)",
+  "messages": [
+    {
+      "channel": "Fixture Tier2 Digest",
+      "id": 9000,
+      "date": "2026-10-09T20:00:00Z",
+      "text": "[NOTE] $DEMO to the moon, great chart posted 2020-01-01T00:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+[project]
+name = "arc-collector"
+version = "1.0.0"
+description = "Deterministic Telegram mention collector for a given token, with source weighting and structured-only JSON output"
+requires-python = ">=3.13"
+dependencies = [
+    "jsonschema>=4.26.0",
+]
+
+[project.scripts]
+arc-collector = "arc_collector.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.20,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "hypothesis>=6.168.5",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "ruff>=0.16.10",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.ruff.lint.per-file-ignores]
+"tools/*" = ["E501"]
+
+[tool.coverage.run]
+source = ["arc_collector"]

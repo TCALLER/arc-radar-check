@@ -1,0 +1,27 @@
+{
+  "description": "Tier 3: plain mention, forward of a tier 1 post, post outside the window",
+  "messages": [
+    {
+      "channel": "Fixture Tier3 Chat",
+      "id": 3001,
+      "date": "2026-10-09T18:00:00Z",
+      "text": "anyone holding $USDC?"
+    },
+    {
+      "channel": "Fixture Tier3 Chat",
+      "id": 3002,
+      "date": "2026-10-09T18:05:00Z",
+      "text": "Listing notice: $USDC (0x3600000000000000000000000000000000000000) is now live.",
+      "forwarded_from": {
+        "channel": "Fixture Tier1 News",
+        "message_id": "1001"
+      }
+    },
+    {
+      "channel": "Fixture Tier3 Chat",
+      "id": 3003,
+      "date": "2026-09-01T12:00:00Z",
+      "text": "$USDC from long ago, outside the 48 hour window"
+    }
+  ]
+}

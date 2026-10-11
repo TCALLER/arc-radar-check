@@ -1,0 +1,35 @@
+{
+  "description": "Tier 1: confirmed (address), ticker-only, unrelated, future-dated",
+  "messages": [
+    {
+      "channel": "Fixture Tier1 News",
+      "id": 1001,
+      "date": "2026-10-08T14:00:00Z",
+      "text": "Listing notice: $USDC (0x3600000000000000000000000000000000000000) is now live. Details: https://example.com/demo-listing",
+      "text_entities": [
+        {
+          "type": "url",
+          "text": "https://example.com/demo-listing"
+        }
+      ]
+    },
+    {
+      "channel": "Fixture Tier1 News",
+      "id": 1002,
+      "date": "2026-10-08T15:00:00Z",
+      "text": "Market wrap: $BTC and $ETH steady, nothing on this token."
+    },
+    {
+      "channel": "Fixture Tier1 News",
+      "id": 1003,
+      "date": "2026-10-09T09:30:00Z",
+      "text": "Volume check: $USDC and $ETH both active today. www.example.org/volume"
+    },
+    {
+      "channel": "Fixture Tier1 News",
+      "id": 1004,
+      "date": "2026-10-11T00:00:00Z",
+      "text": "$USDC dated after as_of; must be ignored"
+    }
+  ]
+}

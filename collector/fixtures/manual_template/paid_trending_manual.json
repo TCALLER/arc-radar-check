@@ -1,0 +1,17 @@
+{
+  "description": "TEMPLATE for entering paid-trending mentions by hand (screen recording or reading the channel). Copy this file into a folder, edit it, and run the collector with --fixtures <that folder>. Only the channel, the time and the ticker/address matter; do not paste the channel's full text.",
+  "messages": [
+    {
+      "channel": "example_trend_alpha",
+      "id": "manual-1",
+      "date": "2026-10-10T14:05:00Z",
+      "text": "$USDC trending"
+    },
+    {
+      "channel": "example_trend_beta",
+      "id": "manual-2",
+      "date": "2026-10-10T16:40:00Z",
+      "text": "$USDC trending 0x3600000000000000000000000000000000000000"
+    }
+  ]
+}

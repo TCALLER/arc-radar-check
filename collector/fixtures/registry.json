@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "channels": [
+    {
+      "name": "Fixture Tier1 News",
+      "tier": "high_signal",
+      "reason": "Synthetic: authoritative, dated reporting",
+      "handle": "fixture_tier1_news"
+    },
+    {
+      "name": "Fixture Tier2 Digest",
+      "tier": "neutral",
+      "reason": "Synthetic: aggregator with some original content",
+      "handle": "fixture_tier2_digest"
+    },
+    {
+      "name": "Fixture Tier3 Chat",
+      "tier": "volume",
+      "reason": "Synthetic: community chat, low signal",
+      "handle": "fixture_tier3_chat"
+    },
+    {
+      "name": "Fixture Promo Signals",
+      "tier": "promotional",
+      "reason": "Synthetic: signal seller with profit claims",
+      "handle": "fixture_promo_signals"
+    },
+    {
+      "name": "Fixture Paid Trending Bot",
+      "tier": "paid_trending",
+      "reason": "Synthetic: sells trending slots, placeholder until real ones are named",
+      "handle": "fixture_paid_trending_bot"
+    },
+    {
+      "name": "Fixture Excluded Feed",
+      "tier": "excluded",
+      "reason": "Synthetic: feed ignored entirely",
+      "handle": "fixture_excluded_feed"
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Arc collector attributed summary",
+  "description": "Every string is constrained by a pattern or enum: free text cannot be expressed.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "token", "as_of", "window_hours", "totals", "by_channel",
+               "promotional", "paid_trending", "warnings"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "token": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ticker", "chain", "contract_addresses"],
+      "properties": {
+        "ticker": {"$ref": "#/$defs/ticker"},
+        "chain": {"type": "string", "pattern": "^[a-z0-9]{2,20}$"},
+        "contract_addresses": {"type": "array", "items": {"$ref": "#/$defs/address"}}
+      }
+    },
+    "as_of": {"$ref": "#/$defs/time"},
+    "window_hours": {"type": "integer", "minimum": 1, "maximum": 8760},
+    "totals": {
+      "type": "object", "additionalProperties": false,
+      "required": ["messages_scanned", "messages_in_window", "duplicates_dropped",
+                   "excluded_messages", "mentions_total", "mentions_organic",
+                   "mentions_promotional", "mentions_paid_trending", "mentions_confirmed",
+                   "mentions_ticker", "mentions_conflicting", "weighted_score"],
+      "properties": {
+        "messages_scanned": {"$ref": "#/$defs/count"},
+        "messages_in_window": {"$ref": "#/$defs/count"},
+        "duplicates_dropped": {"$ref": "#/$defs/count"},
+        "excluded_messages": {"$ref": "#/$defs/count"},
+        "mentions_total": {"$ref": "#/$defs/count"},
+        "mentions_organic": {"$ref": "#/$defs/count"},
+        "mentions_promotional": {"$ref": "#/$defs/count"},
+        "mentions_paid_trending": {"$ref": "#/$defs/count"},
+        "mentions_confirmed": {"$ref": "#/$defs/count"},
+        "mentions_ticker": {"$ref": "#/$defs/count"},
+        "mentions_conflicting": {"$ref": "#/$defs/count"},
+        "weighted_score": {"type": "number", "minimum": 0}
+      }
+    },
+    "by_channel": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["channel", "registered", "tier", "weight", "flagged_promotional",
+                     "mention_count", "weighted_score", "first_seen", "last_seen",
+                     "co_mentioned_tickers", "contract_addresses", "link_domains",
+                     "link_count", "mentions"],
+        "properties": {
+          "channel": {"$ref": "#/$defs/channel"},
+          "registered": {"type": "boolean"},
+          "tier": {"enum": ["high_signal", "neutral", "volume", "promotional", "unrated"]},
+          "weight": {"type": "number", "minimum": 0, "maximum": 1},
+          "flagged_promotional": {"type": "boolean"},
+          "mention_count": {"$ref": "#/$defs/count"},
+          "weighted_score": {"type": "number", "minimum": 0},
+          "first_seen": {"$ref": "#/$defs/time"},
+          "last_seen": {"$ref": "#/$defs/time"},
+          "co_mentioned_tickers": {"type": "array", "items": {"$ref": "#/$defs/ticker"}},
+          "contract_addresses": {"type": "array", "items": {"$ref": "#/$defs/address"}},
+          "link_domains": {"type": "array", "items": {"$ref": "#/$defs/domain"}},
+          "link_count": {"$ref": "#/$defs/count"},
+          "mentions": {
+            "type": "array",
+            "items": {
+              "type": "object", "additionalProperties": false,
+              "required": ["message_id", "timestamp", "kind", "forwarded"],
+              "properties": {
+                "message_id": {"$ref": "#/$defs/messageId"},
+                "timestamp": {"$ref": "#/$defs/time"},
+                "kind": {"enum": ["confirmed", "ticker", "conflicting"]},
+                "forwarded": {"type": "boolean"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "promotional": {
+      "type": "object", "additionalProperties": false,
+      "required": ["channels", "mention_count", "share_of_mentions"],
+      "properties": {
+        "channels": {"type": "array", "items": {"$ref": "#/$defs/channel"}},
+        "mention_count": {"$ref": "#/$defs/count"},
+        "share_of_mentions": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "paid_trending": {
+      "type": "object", "additionalProperties": false,
+      "required": ["channels"],
+      "properties": {
+        "channels": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["channel", "tier", "mention_count", "mentions"],
+            "properties": {
+              "channel": {"$ref": "#/$defs/channel"},
+              "tier": {"const": "paid_trending"},
+              "mention_count": {"$ref": "#/$defs/count"},
+              "mentions": {
+                "type": "array",
+                "items": {
+                  "type": "object", "additionalProperties": false,
+                  "required": ["message_id", "timestamp"],
+                  "properties": {
+                    "message_id": {"$ref": "#/$defs/messageId"},
+                    "timestamp": {"$ref": "#/$defs/time"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["code", "channel", "count"],
+        "properties": {
+          "code": {"enum": ["obfuscated_text", "conflicting_contract_address",
+                            "unregistered_channel"]},
+          "channel": {"$ref": "#/$defs/channel"},
+          "count": {"$ref": "#/$defs/count"}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "count": {"type": "integer", "minimum": 0},
+    "time": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"},
+    "ticker": {"type": "string", "pattern": "^[A-Z][A-Z0-9]{1,9}$"},
+    "address": {"type": "string",
+                "pattern": "^(?:0x[0-9a-f]{40}|[1-9A-HJ-NP-Za-km-z]{32,44})$"},
+    "domain": {"type": "string", "maxLength": 253,
+               "pattern": "^[a-z0-9-]+(?:\\.[a-z0-9-]+)+$"},
+    "messageId": {"type": "string", "pattern": "^[A-Za-z0-9_-]{1,32}$"},
+    "channel": {"type": "string",
+                "pattern": "^(?:[A-Za-z0-9 _.&':()\\[\\]+\\-]{1,64}|unregistered-[0-9a-f]{8})$"}
+  }
+}

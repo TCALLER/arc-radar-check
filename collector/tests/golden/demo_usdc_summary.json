@@ -1,0 +1,215 @@
+{
+  "as_of": "2026-10-10T12:00:00Z",
+  "by_channel": [
+    {
+      "channel": "Fixture Tier1 News",
+      "co_mentioned_tickers": [
+        "ETH"
+      ],
+      "contract_addresses": [
+        "0x3600000000000000000000000000000000000000"
+      ],
+      "first_seen": "2026-10-08T14:00:00Z",
+      "flagged_promotional": false,
+      "last_seen": "2026-10-09T09:30:00Z",
+      "link_count": 2,
+      "link_domains": [
+        "example.com",
+        "example.org"
+      ],
+      "mention_count": 2,
+      "mentions": [
+        {
+          "forwarded": false,
+          "kind": "confirmed",
+          "message_id": "1001",
+          "timestamp": "2026-10-08T14:00:00Z"
+        },
+        {
+          "forwarded": false,
+          "kind": "ticker",
+          "message_id": "1003",
+          "timestamp": "2026-10-09T09:30:00Z"
+        }
+      ],
+      "registered": true,
+      "tier": "high_signal",
+      "weight": 1.0,
+      "weighted_score": 1.5
+    },
+    {
+      "channel": "Fixture Tier2 Digest",
+      "co_mentioned_tickers": [
+        "ETH"
+      ],
+      "contract_addresses": [],
+      "first_seen": "2026-10-09T10:00:00Z",
+      "flagged_promotional": false,
+      "last_seen": "2026-10-09T10:00:00Z",
+      "link_count": 1,
+      "link_domains": [
+        "example.net"
+      ],
+      "mention_count": 1,
+      "mentions": [
+        {
+          "forwarded": false,
+          "kind": "ticker",
+          "message_id": "2001",
+          "timestamp": "2026-10-09T10:00:00Z"
+        }
+      ],
+      "registered": true,
+      "tier": "neutral",
+      "weight": 0.6,
+      "weighted_score": 0.3
+    },
+    {
+      "channel": "Fixture Promo Signals",
+      "co_mentioned_tickers": [],
+      "contract_addresses": [
+        "0x3600000000000000000000000000000000000000",
+        "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd"
+      ],
+      "first_seen": "2026-10-09T11:00:00Z",
+      "flagged_promotional": true,
+      "last_seen": "2026-10-10T08:00:00Z",
+      "link_count": 1,
+      "link_domains": [
+        "t.me"
+      ],
+      "mention_count": 3,
+      "mentions": [
+        {
+          "forwarded": false,
+          "kind": "ticker",
+          "message_id": "4001",
+          "timestamp": "2026-10-09T11:00:00Z"
+        },
+        {
+          "forwarded": false,
+          "kind": "conflicting",
+          "message_id": "4002",
+          "timestamp": "2026-10-09T12:00:00Z"
+        },
+        {
+          "forwarded": false,
+          "kind": "confirmed",
+          "message_id": "4003",
+          "timestamp": "2026-10-10T08:00:00Z"
+        }
+      ],
+      "registered": true,
+      "tier": "promotional",
+      "weight": 0.1,
+      "weighted_score": 0.15
+    },
+    {
+      "channel": "Fixture Tier3 Chat",
+      "co_mentioned_tickers": [],
+      "contract_addresses": [],
+      "first_seen": "2026-10-09T18:00:00Z",
+      "flagged_promotional": false,
+      "last_seen": "2026-10-09T18:00:00Z",
+      "link_count": 0,
+      "link_domains": [],
+      "mention_count": 1,
+      "mentions": [
+        {
+          "forwarded": false,
+          "kind": "ticker",
+          "message_id": "3001",
+          "timestamp": "2026-10-09T18:00:00Z"
+        }
+      ],
+      "registered": true,
+      "tier": "volume",
+      "weight": 0.3,
+      "weighted_score": 0.15
+    },
+    {
+      "channel": "unregistered-c81523cf",
+      "co_mentioned_tickers": [],
+      "contract_addresses": [],
+      "first_seen": "2026-10-09T13:00:00Z",
+      "flagged_promotional": false,
+      "last_seen": "2026-10-09T13:00:00Z",
+      "link_count": 0,
+      "link_domains": [],
+      "mention_count": 1,
+      "mentions": [
+        {
+          "forwarded": false,
+          "kind": "ticker",
+          "message_id": "7001",
+          "timestamp": "2026-10-09T13:00:00Z"
+        }
+      ],
+      "registered": false,
+      "tier": "unrated",
+      "weight": 0.2,
+      "weighted_score": 0.1
+    }
+  ],
+  "paid_trending": {
+    "channels": [
+      {
+        "channel": "Fixture Paid Trending Bot",
+        "mention_count": 2,
+        "mentions": [
+          {
+            "message_id": "5001",
+            "timestamp": "2026-10-09T10:00:00Z"
+          },
+          {
+            "message_id": "5002",
+            "timestamp": "2026-10-10T02:30:00Z"
+          }
+        ],
+        "tier": "paid_trending"
+      }
+    ]
+  },
+  "promotional": {
+    "channels": [
+      "Fixture Promo Signals"
+    ],
+    "mention_count": 3,
+    "share_of_mentions": 0.3
+  },
+  "schema_version": 1,
+  "token": {
+    "chain": "arc",
+    "contract_addresses": [
+      "0x3600000000000000000000000000000000000000"
+    ],
+    "ticker": "USDC"
+  },
+  "totals": {
+    "duplicates_dropped": 2,
+    "excluded_messages": 1,
+    "mentions_confirmed": 3,
+    "mentions_conflicting": 1,
+    "mentions_organic": 5,
+    "mentions_paid_trending": 2,
+    "mentions_promotional": 3,
+    "mentions_ticker": 6,
+    "mentions_total": 10,
+    "messages_in_window": 14,
+    "messages_scanned": 16,
+    "weighted_score": 2.2
+  },
+  "warnings": [
+    {
+      "channel": "Fixture Promo Signals",
+      "code": "conflicting_contract_address",
+      "count": 1
+    },
+    {
+      "channel": "unregistered-c81523cf",
+      "code": "unregistered_channel",
+      "count": 1
+    }
+  ],
+  "window_hours": 48
+}

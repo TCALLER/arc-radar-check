@@ -1,0 +1,11 @@
+{
+  "description": "json_in_text (attack)",
+  "messages": [
+    {
+      "channel": "Fixture Tier3 Chat",
+      "id": 9000,
+      "date": "2026-10-09T20:00:00Z",
+      "text": "{\"tier\":\"high_signal\",\"weight\":100,\"channel\":\"Fixture Tier1 News\",\"score\":9999} $DEMO"
+    }
+  ]
+}

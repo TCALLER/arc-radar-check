@@ -1,0 +1,7 @@
+{
+  "ticker": "USDC",
+  "chain": "arc",
+  "contract_addresses": ["0x3600000000000000000000000000000000000000"],
+  "aliases": [],
+  "note": "USDC ERC-20 interface on Arc mainnet (6 decimals), taken from the requester's arc-radar-check README, which says it was collected from third-party docs on 2026-10-07: verify against the official Arc docs before relying on it. A real-address example; tests use the synthetic DEMO token."
+}
