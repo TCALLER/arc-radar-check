@@ -1,0 +1,285 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "claims.schema.json",
+  "title": "Crypto project promises (facts only)",
+  "description": "One file per project. Every value is traced to a source. 'Not stated' is used for anything the source does not address. No scores, opinions or buy/sell language.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "project",
+    "chain",
+    "prepared_date",
+    "scope_note",
+    "source_access",
+    "sources",
+    "claims",
+    "not_stated_categories",
+    "checks_performed",
+    "alerts"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "project": {
+      "type": "string",
+      "minLength": 1
+    },
+    "chain": {
+      "type": "string",
+      "minLength": 1
+    },
+    "prepared_date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "scope_note": {
+      "type": "string",
+      "description": "What this file covers and what it does not (for example: protocol rules vs the project's own token)."
+    },
+    "source_access": {
+      "type": "string",
+      "description": "How each source was read and what still has to be checked against the original before publication."
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "url",
+          "type",
+          "date_accessed",
+          "document_date"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^S\\d+$"
+          },
+          "title": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "primary",
+              "secondary"
+            ]
+          },
+          "date_accessed": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+              },
+              {
+                "type": "string",
+                "const": "Not accessed"
+              }
+            ],
+            "description": "Date the source was opened, or 'Not accessed' for a source that is named but was not opened."
+          },
+          "document_date": {
+            "type": "string",
+            "description": "Date shown on the document, or 'Not stated'."
+          }
+        }
+      }
+    },
+    "claims": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "$ref": "#/definitions/claim"
+      }
+    },
+    "not_stated_categories": {
+      "type": "array",
+      "description": "Priority categories the source does not address. 'Not stated' is not evidence that nothing exists.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "category",
+          "value",
+          "note"
+        ],
+        "properties": {
+          "category": {
+            "$ref": "#/definitions/category"
+          },
+          "value": {
+            "type": "string",
+            "const": "Not stated"
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "checks_performed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "alerts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "category",
+          "detail",
+          "reference"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^AL-\\d{2}$"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "Hidden Condition",
+              "Contradiction",
+              "Missing Information",
+              "Question for Human Review"
+            ]
+          },
+          "detail": {
+            "type": "string",
+            "description": "One or two sentences: the fact, and what needs to be verified."
+          },
+          "reference": {
+            "type": "string",
+            "description": "Claim ids and/or source location."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "category": {
+      "type": "string",
+      "enum": [
+        "burn",
+        "buyback",
+        "supply",
+        "allocation",
+        "team_vesting",
+        "liquidity_lock",
+        "fees_taxes",
+        "other"
+      ]
+    },
+    "claim": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "category",
+        "promise",
+        "quote",
+        "quote_status",
+        "source",
+        "numbers",
+        "dates",
+        "checkable_onchain",
+        "how_to_check"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Z]+-\\d{2}$"
+        },
+        "category": {
+          "$ref": "#/definitions/category"
+        },
+        "promise": {
+          "type": "string",
+          "description": "What was promised, in the contractor's words, without adding anything the source does not say."
+        },
+        "quote": {
+          "type": "string",
+          "description": "Short verbatim fragment, or a PENDING marker until pasted from the source."
+        },
+        "quote_status": {
+          "type": "string",
+          "enum": [
+            "verbatim",
+            "pending_paste"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "source_id",
+            "url",
+            "location",
+            "date_accessed"
+          ],
+          "properties": {
+            "source_id": {
+              "type": "string",
+              "pattern": "^S\\d+$"
+            },
+            "url": {
+              "type": "string"
+            },
+            "location": {
+              "type": "string",
+              "description": "Page, section, heading or line reference."
+            },
+            "date_accessed": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+            }
+          }
+        },
+        "numbers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "dates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "checkable_onchain": {
+          "type": "string",
+          "enum": [
+            "yes",
+            "no",
+            "partial"
+          ]
+        },
+        "how_to_check": {
+          "type": "string",
+          "description": "Where to look (contract, event, address, explorer). No on-chain values are reported."
+        },
+        "terminology_note": {
+          "type": "string",
+          "description": "Used when the source's term may or may not match a standard concept. Starts with 'Potentially equivalent - [standard term] - human verification required:'."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,350 @@
+{
+  "schema_version": "1.0",
+  "project": "Circle Arc, proposed ARC token (whitepaper, May 2026)",
+  "chain": "Arc, described in the whitepaper abstract as a public Layer-1 blockchain. The ARC token is described as not launched.",
+  "prepared_date": "2026-10-14",
+  "scope_note": "Covers the supply, inflation, burn, fee-routing, allocation and vesting statements on printed pages 1, 7, 8, 9, 10 and 12 of the whitepaper PDF (12 pages), and three FAQ answers on the official page (launch of a native token, whether the ARC token has launched, and equity in Circle). The whitepaper describes a proposed design, not a live token. Pages 2-6 and 11 were not reviewed; Section VI (Governance) was seen only in part (the end of page 10 and Table 4 on page 12).",
+  "source_access": "S1: printed pages 1, 7, 8, 9, 10 and 12 were checked against screenshots of the PDF supplied by the contractor on 2026-10-12; wording, figures and locations were corrected where they differed. Screenshots of the PDF viewer show the viewer's page box equal to the printed page number for printed pages 7, 8, 9 and 12; the viewer number for printed page 10 was not captured. The drafting assistant could not open the document itself. Line numbers from earlier notes are not visible in the PDF and are not used. S2: the FAQ was checked against three screenshots of www.arc.io/arc-token-whitepaper supplied by the contractor on 2026-10-12, which show the FAQ heading, three questions with answers, and no date; no further items were visible below the third. Quotes marked pending_paste must be typed from the source by the contractor. S3 and S4 were opened and read by the drafting assistant on 2026-10-14. On 2026-10-14 the contractor supplied further text from the arc.io page footer and a second set of page numbers. The footer text was supplied as text and is to be confirmed with a screenshot. A second set of page numbers supplied the same day (printed numbers one lower and viewer numbers one higher for several pages) was contradicted by the screenshots and is not used.",
+  "sources": [
+    {
+      "id": "S1",
+      "title": "ARC: The Native Asset of the Economic OS (Circle whitepaper, PDF, 12 pages)",
+      "url": "https://6778953.fs1.hubspotusercontent-na1.net/hubfs/6778953/PDFs/arc_whitepaper.pdf",
+      "type": "primary",
+      "date_accessed": "2026-10-14",
+      "document_date": "May 2026 (printed on page 1)"
+    },
+    {
+      "id": "S2",
+      "title": "Official ARC whitepaper page with FAQ (www.arc.io/arc-token-whitepaper)",
+      "url": "https://www.arc.io/arc-token-whitepaper",
+      "type": "primary",
+      "date_accessed": "2026-10-14",
+      "document_date": "Not stated"
+    },
+    {
+      "id": "S3",
+      "title": "Decrypt, Circle raises $222M in Arc token presale at $3B valuation",
+      "url": "https://decrypt.co/367386/circle-raises-222m-in-arc-token-presale-at-3b-valuation",
+      "type": "secondary",
+      "date_accessed": "2026-10-14",
+      "document_date": "May 11, 2026"
+    },
+    {
+      "id": "S4",
+      "title": "Circle Reports First Quarter 2026 Results (Circle press release)",
+      "url": "https://www.circle.com/pressroom/circle-reports-first-quarter-2026-results",
+      "type": "primary",
+      "date_accessed": "2026-10-14",
+      "document_date": "May 11, 2026"
+    }
+  ],
+  "claims": [
+    {
+      "id": "ARC-01",
+      "category": "burn",
+      "promise": "Fees on Arc are converted to ARC and split between compensation to validators and stakers and a burn that offsets new issuance. The initial configuration is described as directing a meaningful portion to burn from the outset, with no figure stated. The paper's long-term objective is inflation neutrality (burn fully offsets new issuance), which it says is not guaranteed by a fixed timeline. The split ratio is described as configurable and adjustable by governance.",
+      "quote": "The ratio between distribution and burn is configurable and may change over time as the network’s economic profile evolves.",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://6778953.fs1.hubspotusercontent-na1.net/hubfs/6778953/PDFs/arc_whitepaper.pdf",
+        "location": "Printed page 7, Section V 'Economic Architecture', 'Supply and inflation' (inflation neutrality); printed page 8, 'Fee mechanics and conversion' and Figure 3",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "Burn share of fees: configurable and may change by governance; no committed figure stated (initial configuration described only as 'a meaningful portion')",
+        "Figure 3 (page 8) illustrates 50% for burn and is labelled illustrative, not projections or commitments"
+      ],
+      "dates": [
+        "No fixed timeline for inflation neutrality (as stated)"
+      ],
+      "checkable_onchain": "no",
+      "how_to_check": "Nothing to check on-chain: the FAQ says the ARC token has not launched. If a token contract is published later, check burn transfers there."
+    },
+    {
+      "id": "ARC-02",
+      "category": "supply",
+      "promise": "The initial supply of ARC would be 10 billion tokens.",
+      "quote": "ARC will have an initial supply of 10 billion tokens.",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://6778953.fs1.hubspotusercontent-na1.net/hubfs/6778953/PDFs/arc_whitepaper.pdf",
+        "location": "Printed page 7, Section V 'Economic Architecture', 'Supply and inflation'; repeated on printed page 10, 'Token allocation'",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "10,000,000,000 ARC initial supply"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "no",
+      "how_to_check": "No ARC token contract is described as existing (see ARC-07). Total supply could be read from the token contract if one is published."
+    },
+    {
+      "id": "ARC-03",
+      "category": "supply",
+      "promise": "ARC is to have a decaying inflation model: new ARC is issued at a modest annual rate expected to begin at approximately 2% to 3% and distributed to validators and stakers. The inflation rate is described as declining according to a predefined schedule that governance can change.",
+      "quote": "In the early phases, new ARC is issued at a modest annual rate, expected to begin at approximately 2–3%",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://6778953.fs1.hubspotusercontent-na1.net/hubfs/6778953/PDFs/arc_whitepaper.pdf",
+        "location": "Printed page 7, Section V 'Economic Architecture', 'Supply and inflation'",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "Expected to begin at approximately 2% to 3% annually",
+        "Decline schedule: described as predefined and subject to change by governance, but not given in the text reviewed (Figure 3 is labelled illustrative)"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "no",
+      "how_to_check": "Not checkable until a token and issuance mechanism exist on-chain."
+    },
+    {
+      "id": "ARC-04",
+      "category": "allocation",
+      "promise": "The initial supply of 10 billion tokens is allocated across three categories: Ecosystem 60%, Circle 25%, Long-Term Reserve 15%. The Ecosystem share is described as including token sales, developer grants, growth programmes and broader participation. Figure 5 calls the allocation indicative, and exact unlock and release schedules are to be announced in the coming months.",
+      "quote": "ARC’s initial supply of 10 billion tokens is allocated across three categories, each corresponding to a structural role in the network’s development and long-term operation.",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://6778953.fs1.hubspotusercontent-na1.net/hubfs/6778953/PDFs/arc_whitepaper.pdf",
+        "location": "Printed page 10, 'Token allocation' (text and Figure 5 donut chart and legend)",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "Ecosystem 60%",
+        "Circle 25%",
+        "Long-Term Reserve 15%",
+        "Total initial supply 10 billion tokens"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "no",
+      "how_to_check": "No allocation wallets or token contract are described as existing; check the token contract and allocation addresses if published."
+    },
+    {
+      "id": "ARC-05",
+      "category": "team_vesting",
+      "promise": "The 25% Circle allocation is described as reflecting Circle's role as builder of the protocol and supporting Circle's ongoing operations on the network. The text says it lets Circle keep meaningful economic alignment with the network while participating directly in staking and governance and administering ecosystem programmes.",
+      "quote": "This allocation reflects Circle’s role as the builder of the protocol and supports Circle’s ongoing operations on the network.",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://6778953.fs1.hubspotusercontent-na1.net/hubfs/6778953/PDFs/arc_whitepaper.pdf",
+        "location": "Printed page 10, 'Token allocation', bullet '25% - Circle', and Figure 5 legend",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "25% of 10,000,000,000 initial supply"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "no",
+      "how_to_check": "Not checkable until a token and allocation addresses exist.",
+      "terminology_note": "Potentially equivalent - team allocation - human verification required: the paper names the bucket 'Circle' and describes Circle as the builder of the protocol; it does not use the word team and does not say who within Circle holds the tokens. Whether it matches a team or insider allocation depends on the paper's own definition and is not decided here."
+    },
+    {
+      "id": "ARC-06",
+      "category": "team_vesting",
+      "promise": "Exact unlock and release schedules for the allocations would be announced in the coming months after publication. The cited section gives no vesting durations, cliffs, monthly amounts or release dates.",
+      "quote": "Exact unlock and release schedules will be announced in the coming months, but the high level categories are as follows:",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://6778953.fs1.hubspotusercontent-na1.net/hubfs/6778953/PDFs/arc_whitepaper.pdf",
+        "location": "Printed page 10, 'Token allocation' (introductory paragraph) and the Figure 5 caption",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "Vesting duration, cliff, unlock amounts: Not stated"
+      ],
+      "dates": [
+        "'In the coming months' after the May 2026 publication (no exact date stated)"
+      ],
+      "checkable_onchain": "no",
+      "how_to_check": "Not checkable until a vesting or lock contract exists; check Circle's later announcement of the schedules."
+    },
+    {
+      "id": "ARC-07",
+      "category": "other",
+      "promise": "The ARC token has not launched; the whitepaper outlines a proposed coordination model and does not activate a live token, staking system or governance mechanics. Another FAQ answer says a native token is actively being explored, no final decision has been made, and design, functionality, timing and rollout remain subject to change.",
+      "quote": "No. The ARC token has not launched.",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S2",
+        "url": "https://www.arc.io/arc-token-whitepaper",
+        "location": "Official page www.arc.io/arc-token-whitepaper, FAQ, questions 'Has the ARC token launched?' and 'Does the whitepaper confirm the launch of a native Arc token?'",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "Not stated"
+      ],
+      "dates": [
+        "Date checked 2026-10-14; the page shows no date other than the year in its copyright line"
+      ],
+      "checkable_onchain": "no",
+      "how_to_check": "Absence of a token is hard to prove on-chain; rely on Circle's official announcements and check whether an ARC token contract has been published."
+    },
+    {
+      "id": "ARC-08",
+      "category": "fees_taxes",
+      "promise": "All network fees, whatever asset pays them, are converted to ARC at the protocol level and then split between operator compensation (validators and stakers) and a permanent burn. At launch, base transaction fees and priority fees are the fee categories; new categories are expected over time.",
+      "quote": "Figure 4: All fees, regardless of payment asset, are converted to ARC at the protocol level, then split between operator compensation and permanent burn.",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://6778953.fs1.hubspotusercontent-na1.net/hubfs/6778953/PDFs/arc_whitepaper.pdf",
+        "location": "Printed page 8, 'Fee mechanics and conversion'; printed page 9, Figure 4 and 'Fee categories'",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "Fee rates and amounts: Not stated",
+        "Burn versus distribution ratio: configurable, no committed figure (see ARC-01)"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "no",
+      "how_to_check": "Not checkable until the network's fee conversion and burn exist on-chain for a live token; the paper describes it as an on-chain conversion at block settlement."
+    },
+    {
+      "id": "ARC-09",
+      "category": "other",
+      "promise": "The FAQ says ARC would not represent equity in Circle or confer any claim on Circle's revenues, profits, assets or CRCL shares, and describes its intended role as a utility-driven coordination asset for participation in the Arc network. The page 1 disclaimer of the whitepaper makes a similar statement.",
+      "quote": "No. ARC would not represent equity in Circle or confer any claim on Circle’s revenues, profits, assets, or CRCL shares.",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S2",
+        "url": "https://www.arc.io/arc-token-whitepaper",
+        "location": "Official page, FAQ, question 'Does the ARC token represent equity in Circle?'; whitepaper printed page 1, Disclaimer",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "Not stated"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "no",
+      "how_to_check": "Not an on-chain matter: it is a statement about legal and economic rights. Check the project's published terms if a token is launched."
+    }
+  ],
+  "not_stated_categories": [
+    {
+      "category": "buyback",
+      "value": "Not stated",
+      "note": "No buyback is described in the pages reviewed; only a burn funded from fees is mentioned (ARC-01, ARC-08)."
+    },
+    {
+      "category": "liquidity_lock",
+      "value": "Not stated",
+      "note": "No liquidity lock is described in the pages reviewed."
+    },
+    {
+      "category": "fees_taxes",
+      "value": "Not stated",
+      "note": "Fee rates and amounts are not stated in the pages reviewed; only how fees are converted and split is described (ARC-08)."
+    }
+  ],
+  "checks_performed": [
+    "Checked printed pages 1, 7, 8, 9 and 10 of the PDF against five screenshots supplied by the contractor on 2026-10-12. Corrected: the purpose given for the Circle allocation, the burn-ratio statement (configurable, with an illustrative 50% in Figure 3), the inflation schedule wording, and locations (page and section names replace the line references from earlier notes).",
+    "Checked three PDF-viewer screenshots on 2026-10-14: the viewer's page box equals the printed page number for printed pages 8 (Figure 3 and 'Fee mechanics and conversion'), 9 (Figure 4 and 'Fee categories') and 12 (Table 4 and 'Closing'), as it did for printed page 7 earlier. Locations in this file use these printed numbers; Token allocation is on printed page 10 (footer seen in an earlier screenshot).",
+    "Read S4 (Circle's Q1 2026 results release) and S3 (Decrypt) on 2026-10-14: both state the $222M presale at a $3B fully diluted valuation and a whitepaper publication date of May 11, 2026. S4 is a primary source for the presale and the publication date.",
+    "Checked three screenshots of the official FAQ page (www.arc.io/arc-token-whitepaper) against ARC-07 and ARC-09; the question headings and answers matched the earlier text supplied.",
+    "Checked a full-page copy of printed page 8 (cry.pdf, supplied by the contractor) against ARC-01, ARC-08, AL-02: the Figure 3 caption and the 'Fee mechanics and conversion' text match; the statement about the initial configuration directing a meaningful portion to burn was added to ARC-01.",
+    "Checked printed page 12 (Table 4, initial governance model, and 'Closing') and the top of the official FAQ page against two further screenshots; recorded the governance and title observations in AL-11 and AL-12.",
+    "Removed an unsourced statement about a mainnet date from the 'chain' field.",
+    "Checked that the three allocation shares (60, 25, 15) sum to 100%.",
+    "Compared the FAQ's 'not launched' statement with secondary reporting of a presale (S3); see AL-06.",
+    "Compared publication-date statements across sources; see AL-08.",
+    "No earlier Circle or Arc document existed in this set to check for cross-document conflicts."
+  ],
+  "alerts": [
+    {
+      "id": "AL-01",
+      "category": "Hidden Condition",
+      "detail": "The 10 billion figure is an initial supply. New ARC is expected to be issued at about 2% to 3% a year to start, on a declining schedule the paper says governance can change, and inflation neutrality is described as not guaranteed by a fixed timeline. Total supply is therefore not stated as fixed.",
+      "reference": "ARC-01, ARC-02, ARC-03; printed page 7"
+    },
+    {
+      "id": "AL-02",
+      "category": "Hidden Condition",
+      "detail": "The burn share of fees is described as configurable and adjustable by governance, with no committed figure. The 50% burn in Figure 3 is labelled illustrative, not projections or commitments.",
+      "reference": "ARC-01, ARC-08; printed pages 8 and 9, Figure 3"
+    },
+    {
+      "id": "AL-03",
+      "category": "Hidden Condition",
+      "detail": "Figure 5 calls the allocation indicative, and exact unlock and release schedules are still to be announced, so the percentages do not say when any tokens become transferable. The 60% Ecosystem share is described as including token sales.",
+      "reference": "ARC-04, ARC-06; printed page 10, Figure 5"
+    },
+    {
+      "id": "AL-04",
+      "category": "Hidden Condition",
+      "detail": "The page 1 disclaimer says the Arc network, ARC and any related features, allocations, incentives or economic parameters are preliminary, subject to change and may never be implemented, and that no statement in the whitepaper should be treated as a promise or representation about future availability or functionality. An FAQ answer likewise says no final decision has been made on a native token. The arc.io footer small print, as supplied by the contractor, likewise says Arc features may be modified, delayed or cancelled at any time without notice and that nothing there constitutes a commitment, warranty or guarantee.",
+      "reference": "All claims; printed page 1 disclaimer; ARC-07, ARC-09"
+    },
+    {
+      "id": "AL-05",
+      "category": "Contradiction",
+      "detail": "Pages 7 and 10 state the supply, inflation model and allocation in definite, future-tense terms, while the page 1 disclaimer and the FAQ say the design is preliminary and no final decision has been made. The document does not say which figures, if any, are meant as commitments; not resolved here.",
+      "reference": "ARC-02 to ARC-04; printed pages 1, 7 and 10; FAQ"
+    },
+    {
+      "id": "AL-06",
+      "category": "Contradiction",
+      "detail": "The FAQ says the ARC token has not launched and a native token is still being explored. Circle's own Q1 2026 results release (S4, May 11, 2026) reports an ARC token presale of $222 million at a $3 billion fully diluted network valuation, and says the whitepaper was published that day; Decrypt (S3) reports the same. The whitepaper's Ecosystem allocation includes token sales, so these may be consistent; the whitepaper pages reviewed do not mention a presale; not resolved here.",
+      "reference": "ARC-04, ARC-07; S3; S4"
+    },
+    {
+      "id": "AL-07",
+      "category": "Missing Information",
+      "detail": "Not stated in the pages reviewed: vesting durations, cliffs and unlock dates; a committed burn ratio; fee rates; any buyback; any liquidity lock; any breakdown of what the Circle 25% and Long-Term Reserve 15% hold, including whether any part is a team allocation; and voting weights, thresholds or procedures for governance decisions on inflation and burn.",
+      "reference": "ARC-01, ARC-04, ARC-05, ARC-06, ARC-08; not_stated_categories"
+    },
+    {
+      "id": "AL-08",
+      "category": "Question for Human Review",
+      "detail": "The PDF is dated May 2026. Circle's release (S4) and Decrypt (S3) both say the whitepaper was published on May 11, 2026; one other secondary source gave May 13 for an announcement post. Confirm which document each date refers to.",
+      "reference": "S1 document_date; S3; S4; other secondary reports"
+    },
+    {
+      "id": "AL-09",
+      "category": "Question for Human Review",
+      "detail": "The FAQ page address is www.arc.io/arc-token-whitepaper, and Circle's own press page (S4) links its 'Arc' navigation entry to www.arc.io. The contractor reports that the arc.io footer reads (c) 2026 Circle Internet Group, Inc., links its Privacy and Brand Kit entries to www.circle.com, and says Arc was launched by Arc Network Services LLC ('Arc LLC') and is operated by a permissioned validator set. An arc.io page seen in search carried a disclaimer naming 'ANS'; it may refer to Arc Network Services LLC, but no source reviewed says so, and the relationship between that company and Circle is not stated. The footer text was supplied as text; confirm with a screenshot.",
+      "reference": "S1 pages 1 and 12; S2 footer (contractor's text); S4 navigation; source_access"
+    },
+    {
+      "id": "AL-10",
+      "category": "Question for Human Review",
+      "detail": "The FAQ page shows no date; the only date on it is the year in the footer copyright line. The contractor's notes mention a Circle statement that the initial token mint is not a commitment to a public launch; it does not appear in the text of S4 and its source was not captured. Pages 2-6 and 11 of the PDF were not reviewed and may contain further promises.",
+      "reference": "ARC-07; scope_note; source_access"
+    },
+    {
+      "id": "AL-11",
+      "category": "Hidden Condition",
+      "detail": "Economic parameters, including fees, inflation and burn logic, are described as decided by token holders with validators enforcing, while Circle is shown deciding protocol rules, network stewardship, validator membership, and treasury and budgets. The paper also says the Circle allocation lets Circle participate directly in staking and governance and that ARC's utility is not fixed at launch. Voting weights and thresholds are not stated in the pages reviewed. The contractor reports the arc.io footer says Arc is operated by a permissioned validator set.",
+      "reference": "ARC-01, ARC-03, ARC-05; printed page 7 Table 2, printed page 10 'Token allocation', printed page 12 Table 4 and 'Closing'"
+    },
+    {
+      "id": "AL-12",
+      "category": "Question for Human Review",
+      "detail": "The web page banner names the whitepaper 'ARC: The Native Coordination Asset of the Arc Network', while the PDF's title page reads 'ARC: The Native Asset of the Economic OS'. The contractor reports that the page's 'Read the whitepaper' button opens the PDF address used as S1; confirm this by clicking the button, and whether more than one version exists.",
+      "reference": "S1 page 1; S2 FAQ page banner"
+    },
+    {
+      "id": "AL-13",
+      "category": "Hidden Condition",
+      "detail": "Circle's release (S4), in its risk factors, mentions risks arising from token presale and distribution arrangements and possible repayment obligations if key launch milestones are not achieved. The release does not say what the milestones or obligations are.",
+      "reference": "ARC-04, ARC-07; S4 'Forward-Looking Statements'"
+    }
+  ]
+}

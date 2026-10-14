@@ -1,0 +1,276 @@
+{
+  "schema_version": "1.0",
+  "project": "Tolly (TollyLabs), token launchpad and TOLLY protocol token",
+  "chain": "Arc mainnet (chain ID 5042)",
+  "prepared_date": "2026-10-14",
+  "scope_note": "Covers the mechanics stated in the official TOLLY guide for launches and trading on the Tolly platform. The guide's 1,000,000,000 supply is per launched token, not the supply of the TOLLY protocol token. Guide sections on rewards, points and safety limitations were not part of the text reviewed.",
+  "source_access": "S1: sections 14 and 15, the contract address table and the FAQ were checked against five screenshots of the live guide; the contractor then copied the same text, the page header and the section 18 heading on 2026-10-14 and it matched the screenshots. The drafting assistant could not open the page itself. The page header shows 'source-aligned' 4 Sep 2026 and version 2026.08, and the contract table sits under section 18 'Verify', heading 'Verify the exact Arc addresses.' Not reviewed: all other guide sections. Quotes marked pending_paste must be typed from the guide by the contractor. S2 is named but was not opened. S3 was re-read on 2026-10-14.",
+  "sources": [
+    {
+      "id": "S1",
+      "title": "TOLLY guide (official documentation)",
+      "url": "https://tollylabs.com/guide",
+      "type": "primary",
+      "date_accessed": "2026-10-14",
+      "document_date": "4 Sep 2026 (page header, 'source-aligned'); page header also shows version 2026.08"
+    },
+    {
+      "id": "S2",
+      "title": "TollyLabs/v3-contracts (source repository named in the contractor's notes; not opened)",
+      "url": "https://github.com/TollyLabs/v3-contracts",
+      "type": "primary",
+      "date_accessed": "Not accessed",
+      "document_date": "Not stated"
+    },
+    {
+      "id": "S3",
+      "title": "DefiLlama, Tolly protocol page (methodology notes)",
+      "url": "https://defillama.com/protocol/tolly",
+      "type": "secondary",
+      "date_accessed": "2026-10-14",
+      "document_date": "Not stated (live dashboard page)"
+    }
+  ],
+  "claims": [
+    {
+      "id": "TOL-01",
+      "category": "burn",
+      "promise": "On a native-market sell, the 1% pool fee arrives in the project token and is sent to the dead address; it is not paid to the creator in USDC.",
+      "quote": "Arrives in the project token and is sent to the dead address; it is not creator USDC.",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://tollylabs.com/guide",
+        "location": "Guide, section 15 'Create & Earn' (heading: 'Native markets feed five visible buy-side destinations'), NATIVE SELL card",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "1% pool fee on native-market sells",
+        "No split of the sell fee is stated; the card describes the fee as a whole"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "yes",
+      "how_to_check": "Look for project-token transfers to the dead address on the Arc explorer. The guide says the fee is sent to the dead address but does not say which contract delivers it or give the dead address itself; the FeeLocker (0xe20e4297759597da75c8998ee76ec900600ad920) is described in the contract table as launch-liquidity custody and fee routing. Confirm the delivering contract and the dead address in the source repository (S2).",
+      "terminology_note": "Potentially equivalent - burn - human verification required: the guide's wording is 'sent to the dead address'; whether that is the same as a permanent burn for the token's supply needs to be confirmed in the contract source. A secondary source (S3) describes the project-token fee leg as burned outright."
+    },
+    {
+      "id": "TOL-02",
+      "category": "buyback",
+      "promise": "9% of the 1% pool fee on a native-market buy goes to the 'Buy/remove TOLLY' destination (0.09% of buy notional maximum).",
+      "quote": "9% Buy/remove TOLLY 0.09% maximum",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://tollylabs.com/guide",
+        "location": "Guide, section 15 'Create & Earn', buy-side bars, row 'Buy/remove TOLLY'",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "9% of the 1% pool fee",
+        "0.09% of buy notional maximum"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "yes",
+      "how_to_check": "Look at the Furnace contract (0xe60483df8bb33dbe7c50c47b440e957eb65614c3), which the contract table describes as protocol-token market buy and dead-address delivery, and at TOLLY transfers to the dead address on the Arc explorer; confirm the behaviour in the source repository (S2).",
+      "terminology_note": "Potentially equivalent - burn - human verification required: the guide's label is 'Buy/remove TOLLY' and it does not use the word burn. The contract table describes the Furnace as protocol-token market buy and dead-address delivery, which points to delivery to a dead address, but the guide does not say whether total supply is reduced. A secondary source (S3) says bought back and burned. Not decided here."
+    },
+    {
+      "id": "TOL-03",
+      "category": "buyback",
+      "promise": "5% of the 1% pool fee on a native-market buy goes to the 'Buy/remove project' destination (0.05% of buy notional maximum).",
+      "quote": "5% Buy/remove project 0.05% maximum",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://tollylabs.com/guide",
+        "location": "Guide, section 15 'Create & Earn', buy-side bars, row 'Buy/remove project'",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "5% of the 1% pool fee",
+        "0.05% of buy notional maximum"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "yes",
+      "how_to_check": "The screenshots do not name the contract that handles the project-token removal. The Furnace is described only as a protocol-token (TOLLY) contract, so check which contract performs it in the source repository (S2) and the explorer.",
+      "terminology_note": "Potentially equivalent - burn - human verification required: same 'remove' wording as TOL-02, but the contract table's Furnace description covers the protocol token only and the guide does not say what 'remove' does for the project token. Checked on its own, not carried over from TOL-02."
+    },
+    {
+      "id": "TOL-04",
+      "category": "supply",
+      "promise": "Each token launched through Tolly has a supply of 1,000,000,000 that the guide labels 'fixed at creation'. The opening fully diluted valuation shown is about $5,000 (labelled 'protocol launch geometry'). The token and a final locked TOKEN / USDC pool are created together, with no bonding curve, graduation or later liquidity migration.",
+      "quote": "SUPPLY 1,000,000,000 Fixed at creation",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://tollylabs.com/guide",
+        "location": "Guide, section 14 'Create & Earn' (heading: 'One transaction creates the final market'), summary cards SUPPLY, OPENING FDV, POOL and LIQUIDITY (the row has four cards)",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "1,000,000,000 per launched token",
+        "Opening FDV approximately $5,000"
+      ],
+      "dates": [
+        "At creation (one transaction)"
+      ],
+      "checkable_onchain": "yes",
+      "how_to_check": "Read totalSupply() of a launched token and the mint at creation; launches go through TollyPad (0xcad7ee36ac193bf2eddb7b3e2736c5bdb8269c8b). This figure is per launched token, not the TOLLY protocol token."
+    },
+    {
+      "id": "TOL-05",
+      "category": "liquidity_lock",
+      "promise": "The launch liquidity NFT is permanently locked (the guide's LIQUIDITY card reads PERMANENT) and the final locked USDC pool is created together with the token. The FAQ says the lock does not prevent market-price loss or remove token-contract risk.",
+      "quote": "The launch liquidity NFT is permanently locked by the configured launch architecture.",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://tollylabs.com/guide",
+        "location": "Guide, section 14 (LIQUIDITY card and introductory text) and FAQ question 'Can launch liquidity be withdrawn?'",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "Lock duration: permanent (as stated)"
+      ],
+      "dates": [
+        "At launch, in one transaction with token creation"
+      ],
+      "checkable_onchain": "yes",
+      "how_to_check": "Confirm on the Arc explorer that the liquidity NFT for a launch is held by the FeeLocker (0xe20e4297759597da75c8998ee76ec900600ad920), which the contract table describes as permanent launch-liquidity custody and fee routing, and that its verified source has no function to release the NFT."
+    },
+    {
+      "id": "TOL-06",
+      "category": "fees_taxes",
+      "promise": "A native TOLLY-market buy pays a 1% Uniswap V3 pool fee, collected in USDC and divided 64 / 12 / 10 / 9 / 5. The percentages divide that 1% fee; they are not additional percentages of the whole trade. The 1% pool fee also appears on native sells (see TOL-01).",
+      "quote": "The percentages below divide the 1% Uniswap V3 pool fee already collected on a native TOLLY-market buy.",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://tollylabs.com/guide",
+        "location": "Guide, section 15 'Create & Earn', introductory sentence under the heading, and NATIVE BUY card",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "1% Uniswap V3 pool fee",
+        "Collected in USDC",
+        "Divided 64 / 12 / 10 / 9 / 5"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "yes",
+      "how_to_check": "Read the fee tier of a native pool on the Arc explorer / Uniswap V3 pool contract."
+    },
+    {
+      "id": "TOL-07",
+      "category": "fees_taxes",
+      "promise": "On a native-market buy, the 1% pool fee is divided: Creator 64% (0.64% of buy notional maximum), Holder pot 12% (0.12% maximum), Protocol 10% (0.10% maximum), plus the 9% and 5% 'Buy/remove' destinations (TOL-02, TOL-03).",
+      "quote": "64% Creator 0.64% maximum of buy notional",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://tollylabs.com/guide",
+        "location": "Guide, section 15 'Create & Earn', buy-side bars, rows 'Creator', 'Holder pot', 'Protocol'",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "Creator 64% of the pool fee (0.64% of buy notional maximum)",
+        "Holder pot 12% (0.12% maximum)",
+        "Protocol 10% (0.10% maximum)",
+        "The five shares (64 + 12 + 10 + 9 + 5) add up to 100%"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "yes",
+      "how_to_check": "HolderVault (0x150bf8f4087d50da1081365e4a28d7912045a8f4, described in the contract table as market-specific holder reward pots) and Treasury (0xa00c3a33bcb68856f9fd86003e17f76a733fc355, described as the protocol share of native buy-side pool fees) on the Arc explorer; creator payments are routed through the FeeLocker."
+    },
+    {
+      "id": "TOL-08",
+      "category": "fees_taxes",
+      "promise": "When TOLLY routes an eligible outside market, a 0.20% interface fee is applied on input for buys; sells carry no interface fee. External-market pool and venue fees can still apply. Native buys are exempt from the interface fee.",
+      "quote": "EXTERNAL BUY VIA TOLLY 0.20% interface fee Applied on input when TOLLY routes an eligible outside market.",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://tollylabs.com/guide",
+        "location": "Guide, section 15 'Create & Earn', cards EXTERNAL BUY VIA TOLLY and EXTERNAL SELL VIA TOLLY, the note on native buys being exempt, and FAQ question 'Why is an external buy fee different from a native buy?'",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "0.20% interface fee on eligible external buys, applied on input",
+        "No interface fee on external sells",
+        "Native buys exempt from the interface fee"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "partial",
+      "how_to_check": "Inspect transactions through TollySwapRouter (0xceBC2e409A85CFA82B086674e6bc5bEd51692777, described as V3 execution and the external-buy interface-fee path) or MultiRouter (0xf28C138a39c234554c847dBef467B073DDBd7451, described as supported V2 and V3 execution) on the Arc explorer; venue fees depend on the external market."
+    }
+  ],
+  "not_stated_categories": [
+    {
+      "category": "team_vesting",
+      "value": "Not stated",
+      "note": "The guide text reviewed does not establish a team allocation percentage or vesting schedule. This is not evidence that no team allocation exists."
+    },
+    {
+      "category": "allocation",
+      "value": "Not stated",
+      "note": "Supply, allocation and any lock or vesting for the TOLLY protocol token itself are not in the guide text reviewed; the 1,000,000,000 figure is per launched token."
+    }
+  ],
+  "checks_performed": [
+    "Checked every claim in this file against five screenshots of the live guide (sections 14 and 15, contract table, FAQ) supplied by the contractor on 2026-10-12. Corrected: labels ('Holder pot', 'Buy/remove TOLLY', 'Buy/remove project'), the router name ('TollySwapRouter', not 'TollySwapRouterV3'), and the buy-fee currency (USDC).",
+    "On 2026-10-14 compared the contractor's copied text for TOL-01 to TOL-08, the page header, the section 18 heading and the four section 14 cards with the earlier screenshots: consistent. The header date and version, the heading and the full four-card row were newly captured. Re-read S3 (DefiLlama) on 2026-10-14: its methodology still describes a 9% share bought back into TOLLY and burned and a project-token fee leg burned outright.",
+    "Checked that the five buy-side shares (64, 12, 10, 9, 5) sum to 100%.",
+    "Compared the seven contract addresses used in this file with the address table in the screenshots; all match, including capitalisation. This was read from screenshots, so confirm each address on the Arc explorer. The other four table entries (TOLLY, Lens, UniversalForge, OrderExecutor V4) are not used in any claim.",
+    "Compared the 9% share with S3 (DefiLlama), which describes a 9% share bought back into TOLLY and burned; consistent in size, different in wording (see AL-04).",
+    "No earlier Tolly document existed in this set to check for cross-document conflicts."
+  ],
+  "alerts": [
+    {
+      "id": "AL-01",
+      "category": "Hidden Condition",
+      "detail": "The 64% creator share is a share of the 1% pool fee, not of the trade, so it is at most 0.64% of the buy amount. The guide states this itself, and other percentages are stated as maximums.",
+      "reference": "TOL-06, TOL-07; guide section 15"
+    },
+    {
+      "id": "AL-02",
+      "category": "Hidden Condition",
+      "detail": "The sell-side fee arrives in the project token and goes to the dead address, so the creator receives no USDC from sells.",
+      "reference": "TOL-01; guide section 15, NATIVE SELL card"
+    },
+    {
+      "id": "AL-03",
+      "category": "Hidden Condition",
+      "detail": "The FAQ says the permanent lock does not prevent market-price loss or remove token-contract risk. Eligible external buys routed through TOLLY carry a 0.20% interface fee applied on input, and external-market pool and venue fees can still apply.",
+      "reference": "TOL-05, TOL-08; guide section 15 and FAQ"
+    },
+    {
+      "id": "AL-04",
+      "category": "Question for Human Review",
+      "detail": "The guide labels the destinations 'Buy/remove' and does not use the word burn. The contract table describes the Furnace as protocol-token market buy and dead-address delivery, which fits TOLLY (TOL-02), but nothing in the reviewed text says which contract handles the 5% project-token removal (TOL-03) or whether supply is reduced. A secondary source says 'burned'. Confirm in the source repository before treating either as a burn. A secondary source (S3) also describes the project-token fee leg as burned outright.",
+      "reference": "TOL-01, TOL-02, TOL-03; guide section 15 and contract table; S3 methodology"
+    },
+    {
+      "id": "AL-05",
+      "category": "Missing Information",
+      "detail": "No team allocation or vesting is stated in the guide text reviewed, and nothing is stated about the TOLLY protocol token's own supply, allocation, lock or vesting. The dead address itself and the contract that delivers the sell-side fee to it are also not stated in the reviewed text.",
+      "reference": "not_stated_categories; TOL-01, TOL-04"
+    },
+    {
+      "id": "AL-06",
+      "category": "Question for Human Review",
+      "detail": "Guide sections outside those reviewed may contain further promises; the FAQ also states that order triggers do not guarantee an exact price or fill, which is outside this file's categories. The page header shows a source-aligned date of 4 Sep 2026 and version 2026.08, and this file reflects the page as viewed on 2026-10-14. The contract table is labelled 'verified address entries', and the guide says a documentation address helps identify the system while the wallet's own transaction data remains the signing authority; confirm each address on the Arc explorer.",
+      "reference": "scope_note; source_access"
+    }
+  ]
+}
