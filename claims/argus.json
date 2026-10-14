@@ -1,0 +1,301 @@
+{
+  "schema_version": "1.0",
+  "project": "Argus (argus.world), token launchpad",
+  "chain": "Arc mainnet (chain ID 5042)",
+  "prepared_date": "2026-10-14",
+  "scope_note": "Covers the protocol rules in the official repository README for tokens launched through Argus. The README's Protocol Evolution table distinguishes Legacy Portals (#1-#2) from Hooked Portals (#3-#7, current Portal v7); the claims below follow the README's statements and AL-04 notes where it does not say which apply to legacy Portals. It does not cover the $ARGUS platform token, which the README does not describe. From the repository's onchain/ folder, addresses.md and launch-record-layout.md were read in full; from docs/, the contractor supplied the text of one page ('After you launch', which contains no promises in this file's categories); the example script scripts/verify-launch.mjs was supplied by the contractor. Other files in onchain/ and docs/ were not reviewed, and the notes file the script names (NOTES-LIMITATIONS.md) was not found at the repository root. The onchain/ folder also holds argoinu.md, a narrative walkthrough of a mascot token launched through Argus; a keyword search found no supply, lock, burn or allocation figures in it and it was not reviewed in full.",
+  "source_access": "S1 (README) was read in full and re-read line by line against this file on 2026-10-14; the contractor's quotes were also checked against the README text on that date; the Portal v7 and PoolManager addresses match the README's Network Specifications table. S3 and S4 were downloaded and read by the drafting assistant on 2026-10-14; the Portal registry and shared v4 tables in S3 match the contractor's screenshots, and Portal #7 and PoolManager addresses match the README. S5 was supplied by the contractor as text. S2 (argus.world) was seen only as a search-result snippet, and the repository's docs/ and onchain/ pages could not be opened by the drafting assistant because the sites refuse automated access. Quotes marked pending_paste must be copied from S1 by the contractor.",
+  "sources": [
+    {
+      "id": "S1",
+      "title": "arguspad/argus-world, README.md (official repository)",
+      "url": "https://github.com/arguspad/argus-world",
+      "type": "primary",
+      "date_accessed": "2026-10-14",
+      "document_date": "Not stated"
+    },
+    {
+      "id": "S2",
+      "title": "argus.world home page (snippet only)",
+      "url": "https://argus.world/",
+      "type": "primary",
+      "date_accessed": "2026-10-12",
+      "document_date": "Not stated"
+    },
+    {
+      "id": "S3",
+      "title": "onchain/addresses.md (network, Portal registry, shared v4 infrastructure, per-launch contracts, published ABI bundle)",
+      "url": "https://github.com/arguspad/argus-world/blob/main/onchain/addresses.md",
+      "type": "primary",
+      "date_accessed": "2026-10-14",
+      "document_date": "Not stated"
+    },
+    {
+      "id": "S4",
+      "title": "onchain/launch-record-layout.md (launch record layout by Portal version)",
+      "url": "https://github.com/arguspad/argus-world/blob/main/onchain/launch-record-layout.md",
+      "type": "primary",
+      "date_accessed": "2026-10-14",
+      "document_date": "Not stated"
+    },
+    {
+      "id": "S5",
+      "title": "scripts/verify-launch.mjs (example script in the repository; text supplied by the contractor)",
+      "url": "https://github.com/arguspad/argus-world/tree/main/scripts",
+      "type": "primary",
+      "date_accessed": "2026-10-14",
+      "document_date": "Not stated"
+    }
+  ],
+  "claims": [
+    {
+      "id": "ARG-01",
+      "category": "buyback",
+      "promise": "Each launch sets a buyback-and-burn share of the creator allocation. The README says the allocation is tracked through an event, and the actual swap and burn is delegated to an external permissionless module.",
+      "quote": "Buyback & burn → tracked via an event (BuybackBurnAllocated); the actual swap+burn execution is delegated to an external permissionless module.",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://github.com/arguspad/argus-world",
+        "location": "README, section '4. RevenueSplitter.sol - Revenue Distribution', bullet 'Buyback & burn'; section '1. Portal.sol - The Factory' (allocation validation); section 'Revenue Distribution' (flowchart)",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "Four allocation values per launch (creatorFundsBps, buybackBurnBps, dividendsBps, liquidityBps) must sum to 10,000 bps (100%)",
+        "Buyback-and-burn share chosen per launch: Not stated (the README says the four destinations are configurable and set at launch time)"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "partial",
+      "how_to_check": "First find which Portal launched the token (Portals #1 to #7 with addresses are listed in S3), then use that Portal's versioned ABI from the project's published bundle (S3) to read the launch record; layouts differ by Portal version (S4). The per-launch hook, locker and splitter addresses are emitted in the Portal's PartsDeployed(token, locker, hook, splitter) event (S3). Look for events named BuybackBurnAllocated (the README lists the event under RevenueSplitter); its signature is not in S3 or S4. Whether tokens are actually bought and burned depends on the external module, which the README does not name."
+    },
+    {
+      "id": "ARG-02",
+      "category": "supply",
+      "promise": "Every launched token has a supply of 1,000,000,000 tokens with 18 decimals, minted once at initialisation to the Portal.",
+      "quote": "Supply per Launch | 1,000,000,000 tokens (18 decimals)",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://github.com/arguspad/argus-world",
+        "location": "README, section 'Network Specifications' (row 'Supply per Launch'); section 'How a Launch Works', step 1; section '2. LaunchToken.sol' (bullet 'Fixed supply at initial mint')",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "1,000,000,000 tokens per launch",
+        "18 decimals"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "yes",
+      "how_to_check": "Read totalSupply() of a launched token contract and the mint event at initialisation on the Arc explorer; confirm initialize() is guarded so it can only run once."
+    },
+    {
+      "id": "ARG-03",
+      "category": "other",
+      "promise": "After deployment the Portal ('factory') has no mint, pause or blacklist power over a launched token, and the token has no transfer tax; tax applies only to swaps, in the hook.",
+      "quote": "No administrative privileges: the factory (the Portal) has no mint, pause, or blacklist power over the token after deployment.",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://github.com/arguspad/argus-world",
+        "location": "README, section '2. LaunchToken.sol - The EIP-1167 Token', bullets 'No transfer tax' and 'No administrative privileges' (the quote field holds one bullet because of the 25-word limit)",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "0% transfer tax on wallet-to-wallet transfers"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "yes",
+      "how_to_check": "Read the verified LaunchToken implementation on the Arc explorer and confirm there is no mint, pause or blacklist function callable by the factory after initialize()."
+    },
+    {
+      "id": "ARG-04",
+      "category": "liquidity_lock",
+      "promise": "The whole supply is deposited into one Uniswap v4 liquidity position, and a Locker contract holds that position permanently with no withdrawal or admin function.",
+      "quote": "there's no withdraw, rescue, or any admin function",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://github.com/arguspad/argus-world",
+        "location": "README, section '5. Locker.sol - Locked Liquidity', bullet 'No withdrawal function' (the README formats withdraw and rescue as code; formatting removed in the quote); section 'How a Launch Works', steps 4 and 5",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "Entire 1,000,000,000 supply in a single position between tickStart and tickBond"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "yes",
+      "how_to_check": "Find the launch's Locker address in the Portal's PartsDeployed event or in the launch record (S3, S4; the Locker holds the launch's liquidity position and is not a pool address). On the Arc explorer confirm the verified Locker source has no withdraw, rescue or admin function, and confirm the position is held by the Locker via the PoolManager (0x8366a39CC670B4001A1121B8F6A443A643e40951). Each launch has its own hook and Locker; there is no single Argus hook or pool contract (S3)."
+    },
+    {
+      "id": "ARG-05",
+      "category": "fees_taxes",
+      "promise": "Each launch has a buy tax and a sell tax of 1% to 10% per side (not both zero), fixed at hook deployment and never changeable; the pool also charges a fixed 1% pool fee.",
+      "quote": "Launch tax (buy/sell) | 1%–10% per side | Fixed forever at Hook deployment",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://github.com/arguspad/argus-world",
+        "location": "README, section '3. LaunchHook.sol' (bullet 'Taxes fixed for the hook's lifetime'); section 'Tax Mechanics' (table)",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "Launch tax 1% to 10% per side",
+        "Pool fee 1% (10000 bps)",
+        "Tick spacing 200"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "yes",
+      "how_to_check": "Read buyTaxBps and sellTaxBps (immutable) on the launch's own LaunchHook contract on the Arc explorer. For hooked Portals the launch record also lists buyTaxBps and sellTaxBps (S4); the legacy Portals #1 and #2 use a different record with no tax fields (S4)."
+    },
+    {
+      "id": "ARG-06",
+      "category": "fees_taxes",
+      "promise": "An opening snipe tax is added on top of the launch tax, up to a combined cap of 99%, decaying within the first 3 seconds after launch; Portal and Splitter are exempt.",
+      "quote": "Opening snipe tax: an additional surcharge (up to 99% combined) that decays within the first 3 seconds after launch, following a non-linear (right-shift) decay curve.",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://github.com/arguspad/argus-world",
+        "location": "README, section '3. LaunchHook.sol - Tax & Bonding' (bullets 'Opening snipe tax' and 'Combined rate cap'); section 'Tax Mechanics' (table)",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "Combined cap 99% (COMBINED_RATE_CAP_BPS = 9900)",
+        "Decay window 3 seconds"
+      ],
+      "dates": [
+        "First 3 seconds after launch"
+      ],
+      "checkable_onchain": "yes",
+      "how_to_check": "Read COMBINED_RATE_CAP_BPS and the decay logic in the verified LaunchHook source on the Arc explorer."
+    },
+    {
+      "id": "ARG-07",
+      "category": "fees_taxes",
+      "promise": "All taxed USDC (swap taxes and harvested LP fees) goes to the RevenueSplitter: 10% to the Argus treasury immediately, 90% to the creator's four destinations (creator funds, buyback and burn, dividends, liquidity).",
+      "quote": "routes it according to a fixed 10% / 90% split",
+      "quote_status": "verbatim",
+      "source": {
+        "source_id": "S1",
+        "url": "https://github.com/arguspad/argus-world",
+        "location": "README, section '4. RevenueSplitter.sol'; section 'Revenue Distribution'; section '5. Locker.sol' (harvestFees is permissionless)",
+        "date_accessed": "2026-10-14"
+      },
+      "numbers": [
+        "10% Argus treasury",
+        "90% creator allocation",
+        "Four destinations sum to 10,000 bps"
+      ],
+      "dates": [
+        "Not stated"
+      ],
+      "checkable_onchain": "yes",
+      "how_to_check": "Read the RevenueSplitter source and its payout events for a launch on the Arc explorer; compare treasury transfers with the 10% figure."
+    }
+  ],
+  "not_stated_categories": [
+    {
+      "category": "team_vesting",
+      "value": "Not stated",
+      "note": "The README describes no team allocation or vesting for launched tokens and says the entire supply is placed in the liquidity position. 'Not stated' is not evidence that none exists."
+    },
+    {
+      "category": "allocation",
+      "value": "Not stated",
+      "note": "No supply, allocation, vesting, burn or lock terms for the $ARGUS platform token appear in the README."
+    },
+    {
+      "category": "burn",
+      "value": "Not stated",
+      "note": "No fixed burn rate is stated; burning depends on each launch's allocation set at launch time and an external module (see ARG-01)."
+    }
+  ],
+  "checks_performed": [
+    "Read the full README text of S1 on 2026-10-12.",
+    "Checked the contractor's copied quotes for ARG-01, 02, 03, 05, 06 and 07 against the README text on 2026-10-14: all found word for word once code formatting is removed.",
+    "Read onchain/addresses.md and onchain/launch-record-layout.md on 2026-10-14: the Portal v7 and PoolManager addresses match the README, the Portal registry matches the contractor's screenshots, and the record layouts explain the differing record sizes. how_to_check wording for ARG-01, ARG-04 and ARG-05 was corrected to use the PartsDeployed event, the versioned ABI and the record layout.",
+    "Confirmed from the repository front page (contractor's tool, 2026-10-14) that NOTES-LIMITATIONS.md is not at the repository root, matching a 404 on the raw file address. Scanned onchain/argoinu.md for statements in this file's categories and found none that conflict with the README.",
+    "Re-read the README on 2026-10-12 and compared every claim, number, section name and address in this file with it; corrections: ARG-01 and ARG-04 how_to_check wording (the README does not list the launch record's fields), ARG-02 location (step 1 added), scope note (legacy vs hooked Portals).",
+    "Compared the Portal v7 and PoolManager addresses with the onchain/ tables (S3): both match the README. Portal v7's record size in S3 (11 words) matches the README's LAUNCH_STRUCT_WORDS() value of 11. The registry lists #1 and #2 as legacy v3 and #3 to #7 as hooked v4, consistent with the README's Protocol Evolution table.",
+    "Compared the README's statements on supply, tax, lock and revenue split across sections for internal conflicts (see AL-04).",
+    "No earlier Argus document existed in this set to check for cross-document conflicts."
+  ],
+  "alerts": [
+    {
+      "id": "AL-01",
+      "category": "Hidden Condition",
+      "detail": "The headline launch tax is 1% to 10% per side, but the README also describes an opening snipe tax of up to 99% combined that decays within 3 seconds. Which launches or buyers this affects needs checking in the hook source.",
+      "reference": "ARG-05, ARG-06; README sections '3. LaunchHook.sol' and 'Tax Mechanics'"
+    },
+    {
+      "id": "AL-02",
+      "category": "Hidden Condition",
+      "detail": "Buyback-and-burn is an allocation tracked by an event; the swap and burn itself is left to an external permissionless module that the README does not name. An allocated amount is therefore not the same as an executed burn.",
+      "reference": "ARG-01; README section '4. RevenueSplitter.sol'"
+    },
+    {
+      "id": "AL-03",
+      "category": "Hidden Condition",
+      "detail": "Creator funds and dividends stay as an internal balance until a claim function is called (README: 'Credited is not paid'). Amounts credited are not amounts received by holders or the creator.",
+      "reference": "ARG-07; README section '4. RevenueSplitter.sol'"
+    },
+    {
+      "id": "AL-04",
+      "category": "Contradiction",
+      "detail": "The Protocol Evolution table says legacy Portals #1 to #2 keep tax logic inside the token, while the LaunchToken section says there is no transfer tax and all tax is in the hook. The README does not say which statement applies to legacy Portals; not resolved here. The onchain/ Portal registry also lists Portals #1 and #2 as legacy v3.",
+      "reference": "ARG-03, ARG-05; README sections 'Protocol Evolution' and '2. LaunchToken.sol'; S3 Portal registry"
+    },
+    {
+      "id": "AL-05",
+      "category": "Missing Information",
+      "detail": "No team allocation, vesting, or lock terms are stated for launched tokens, and nothing is stated about the $ARGUS platform token (supply, allocation, vesting, burns). No audit report is referenced in the README.",
+      "reference": "not_stated_categories; README sections 'Security' and 'Network Specifications'"
+    },
+    {
+      "id": "AL-06",
+      "category": "Question for Human Review",
+      "detail": "Files in docs/ and onchain/ other than addresses.md, launch-record-layout.md and the one docs page supplied were not reviewed, and argus.world could not be opened by the drafting assistant (access refused). Any of them may change or add to figures above; the event signature for BuybackBurnAllocated was not found in the two onchain files read. The site wording 'every parameter is fixed at launch' was seen only as a search snippet; check it against the README's decaying snipe tax.",
+      "reference": "S2 snippet; README section 'Repository Layout'"
+    },
+    {
+      "id": "AL-07",
+      "category": "Question for Human Review",
+      "detail": "Confirm on the Arc explorer, for at least one launch, that the deployed Locker, Hook and RevenueSplitter source matches what the README says. This file reports where to look, not what the chain currently shows.",
+      "reference": "ARG-01 to ARG-07"
+    },
+    {
+      "id": "AL-08",
+      "category": "Contradiction",
+      "detail": "The README says launch taxes are between 1% and 10% per side and also that they cannot both be zero. If each side must be at least 1%, the 'not both zero' rule would be unnecessary, so it is unclear whether one side may be 0%; not resolved here.",
+      "reference": "ARG-05; README section '1. Portal.sol - The Factory' and section 'Tax Mechanics' (table)"
+    },
+    {
+      "id": "AL-09",
+      "category": "Question for Human Review",
+      "detail": "The onchain files (S3, S4) list seven Portals and say a newer Portal never replaces the contracts of tokens launched by an earlier Portal. Launch records differ by Portal: #6 and #7 have 11 words; #4 and #5 have 10 words with no quote asset (USDC fixed); #3 has 9 words and no bonding tick; #1 and #2 are legacy v3 with entirely different fields and no tax fields. The README describes the current Portal (v7) and does not say which of its statements hold for launches from Portals #1 to #6; confirm per Portal.",
+      "reference": "ARG-01 to ARG-07; S3 Portal registry; S4 record layout; README sections 'Network Specifications' and 'Protocol Evolution'"
+    },
+    {
+      "id": "AL-10",
+      "category": "Question for Human Review",
+      "detail": "S3 gives chain ID 5042 and labels it 'from Argus docs'. The repository's example script (S5) refers to a 'known chain-ID discrepancy' in a notes file (NOTES-LIMITATIONS.md), but the repository front page lists only assets, contracts, docs, onchain, scripts and README.md, and the file is not at the repository root. Confirm the chain ID against the Arc explorer and ask where the notes file is.",
+      "reference": "Scope note; S3 'Network' table; S5 header comments"
+    },
+    {
+      "id": "AL-11",
+      "category": "Question for Human Review",
+      "detail": "S3 points to an ABI and address bundle (argus-v4.json, generated 2026-09-12, with a published SHA-256; argus-abi.json for legacy v3) hosted on the domain arguspad.io, which differs from the project site argus.world. S3 says its own example for the bundle omits Portal #7, and S5 says its generic ABI is not the verified ABI. Confirm that arguspad.io is operated by the project, for example via a link from argus.world.",
+      "reference": "S3 'Published ABI/addresses bundle'; S5 header comments"
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+# Working file for scripts/fill_quotes.py. Do not include in the pull request.
+# After each '|' paste the exact words from the source (25 words or fewer). Leave blank to skip.
+# The text after the dash is a reminder of what to copy and where.
+
+# ---- argus.json ----
+# ARG-01: paste the sentence on 'Buyback & burn' from README section '4. RevenueSplitter.sol - Revenue Distribution'
+ARG-01 | 
+# ARG-02: paste the 'Supply per Launch' row from README section 'Network Specifications'
+ARG-02 | 
+# ARG-03: paste the 'No administrative privileges' and 'No transfer tax' bullets from README section '2. LaunchToken.sol'
+ARG-03 | 
+# ARG-05: paste the 'Launch tax (buy/sell)' row from README section 'Tax Mechanics'
+ARG-05 | 
+# ARG-06: paste the 'Opening snipe tax' bullet from README section '3. LaunchHook.sol'
+ARG-06 | 
+# ARG-07: paste the 'fixed 10% / 90% split' sentence from README section '4. RevenueSplitter.sol'
+ARG-07 | 
+
+# ---- tolly.json ----
+# TOL-01: type the description line of the NATIVE SELL card (section 15)
+TOL-01 | 
+# TOL-02: type the 'Buy/remove TOLLY' bar label and its figures (section 15)
+TOL-02 | 
+# TOL-03: type the 'Buy/remove project' bar label and its figures (section 15)
+TOL-03 | 
+# TOL-05: type the FAQ answer to 'Can launch liquidity be withdrawn?'
+TOL-05 | 
+# TOL-06: type the sentence under the section 15 heading that begins 'The percentages below divide...'
+TOL-06 | 
+# TOL-07: type the three bar labels and figures for Creator, Holder pot and Protocol (section 15)
+TOL-07 | 
+# TOL-08: type the EXTERNAL BUY VIA TOLLY and EXTERNAL SELL VIA TOLLY card lines (section 15)
+TOL-08 | 
+
+# ---- arc-token-whitepaper.json ----
+# ARC-01: type the sentence on the ratio between distribution and burn being configurable (page 8, 'Fee mechanics and conversion')
+ARC-01 | 
+# ARC-02: type the initial-supply sentence (page 7, 'Supply and inflation')
+ARC-02 | 
+# ARC-03: type the sentence giving the expected 2-3% starting rate (page 7)
+ARC-03 | 
+# ARC-04: type the sentence listing the three categories (page 10, 'Token allocation')
+ARC-04 | 
+# ARC-05: type the first sentence on the 25% Circle allocation (page 10)
+ARC-05 | 
+# ARC-06: type the sentence saying exact unlock and release schedules will be announced (page 10, 'Token allocation' intro; repeated in Figure 5 caption)
+ARC-06 | 
+# ARC-08: type the Figure 4 caption (page 9)
+ARC-08 | 
+# ARC-09: type the first sentence of the FAQ answer to 'Does the ARC token represent equity in Circle?'
+ARC-09 | 
