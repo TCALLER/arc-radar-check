@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "note": "Weights confirmed by the requester (2026-10-10). paid_trending and excluded must stay 0.",
+  "tier_weights": {
+    "high_signal": "1.0",
+    "neutral": "0.6",
+    "volume": "0.3",
+    "unrated": "0.2",
+    "promotional": "0.1",
+    "paid_trending": "0",
+    "excluded": "0"
+  },
+  "kind_factors": {
+    "confirmed": "1.0",
+    "ticker": "0.5",
+    "conflicting": "0"
+  }
+}

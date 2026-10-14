@@ -1,0 +1,11 @@
+{
+  "description": "json_in_text (clean)",
+  "messages": [
+    {
+      "channel": "Fixture Tier3 Chat",
+      "id": 9000,
+      "date": "2026-10-09T20:00:00Z",
+      "text": "{\"colour\":\"blue\",\"size\":100,\"label\":\"Fixture Note\",\"value\":1} $DEMO"
+    }
+  ]
+}

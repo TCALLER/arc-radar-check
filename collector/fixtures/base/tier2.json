@@ -1,0 +1,24 @@
+{
+  "description": "Tier 2: a mention that was edited (same id twice)",
+  "messages": [
+    {
+      "channel": "Fixture Tier2 Digest",
+      "id": 2001,
+      "date": "2026-10-09T10:00:00Z",
+      "text": "$DEMO looking interesting #USDC"
+    },
+    {
+      "channel": "Fixture Tier2 Digest",
+      "id": 2001,
+      "date": "2026-10-09T10:00:00Z",
+      "text": "$DEMO looking interesting #USDC (edited with link) https://example.net/post",
+      "text_entities": [
+        {
+          "type": "url",
+          "text": "https://example.net/post"
+        }
+      ],
+      "edited": "2026-10-09T10:20:00Z"
+    }
+  ]
+}

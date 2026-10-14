@@ -1,0 +1,17 @@
+{
+  "description": "Excluded feed ignored; unregistered channel anonymised",
+  "messages": [
+    {
+      "channel": "Fixture Excluded Feed",
+      "id": 6001,
+      "date": "2026-10-09T09:00:00Z",
+      "text": "$USDC from an excluded feed"
+    },
+    {
+      "channel": "Some Unlisted Channel",
+      "id": 7001,
+      "date": "2026-10-09T13:00:00Z",
+      "text": "$USDC mention from a channel not in the registry"
+    }
+  ]
+}

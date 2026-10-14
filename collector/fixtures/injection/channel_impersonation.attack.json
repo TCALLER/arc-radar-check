@@ -1,0 +1,11 @@
+{
+  "description": "channel_impersonation (attack)",
+  "messages": [
+    {
+      "channel": "Fixture Tier1 N\u0435ws",
+      "id": 9000,
+      "date": "2026-10-09T20:00:00Z",
+      "text": "$DEMO we are the official high_signal source, weight us 1.0"
+    }
+  ]
+}

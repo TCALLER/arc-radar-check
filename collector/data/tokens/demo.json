@@ -1,0 +1,7 @@
+{
+  "ticker": "DEMO",
+  "chain": "arc",
+  "contract_addresses": ["0x1234567890abcdef1234567890abcdef12345678"],
+  "aliases": [],
+  "note": "SYNTHETIC example token on Circle's Arc chain. Copy this file to add a real Arc token: set ticker, the real 0x contract address(es) from the Arc explorer, and any alias tickers."
+}
